@@ -1,0 +1,843 @@
+
+
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import HomeScreen from "./screens/HomeScreen";
+import {DrawerActions, NavigationContainer,useNavigation } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ProfileScreen from "./screens/ProfileScreen";
+import UserScreen from "./screens/UserScreen";
+// import Icon from '@expo/vector-icons/Entypo';
+// import 'react-native-gesture-handler'
+// import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import DrawerContent from "./DrawerContetn";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import SettingScreen from "./screens/SettingScreens";
+import Icon from 'react-native-vector-icons/Ionicons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import DetailsScreen from "./screens/DetailsScreen";
+const StackNav = () => {
+  const navigation = useNavigation();
+  const Stack = createNativeStackNavigator();
+  return (
+    <Stack.Navigator
+      // initialRouteName='Profile'
+      screenOptions={{
+        statusBarColor: "orange",
+        // title:'Home Screen',
+        headerStyle: {
+          backgroundColor: "orange",
+        },
+        headerTintColor: "white",
+        headerTitleAlign: "center",
+        // headerLeft:()=>{
+        //   return(
+        //     <Icon
+        //     onPress={()=>navigation.dispatch(DrawerActions.openDrawer())}
+        //     name='menu'
+        //     size={30}
+        //     color='#fff'
+            
+        //     />
+        //   )
+        // }
+      }}
+    >
+      <Stack.Screen name="Home" component={HomeScreen} options={{
+        headerLeft:()=>{
+          return(
+            <Icon
+            onPress={()=>navigation.dispatch(DrawerActions.openDrawer())}
+            name='menu'
+            size={30}
+            color='#fff'
+            
+            />
+          )
+        }
+      }} />
+      <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="User" component={UserScreen} />
+    </Stack.Navigator>
+  );
+};
+
+
+const DrawerNav =()=>{
+  const Drawer = createDrawerNavigator();
+  return (
+    <Drawer.Navigator
+    drawerContent={props=><DrawerContent {...props}/>}
+    screenOptions={{
+      headerShown:false
+    }}
+    >
+    <Drawer.Screen name="Home" component={StackNav} />
+    {/* <Drawer.Screen name="Profile" component={ProfileScreen} />
+    <Drawer.Screen name="User" component={UserScreen} /> */}
+  </Drawer.Navigator>
+  )
+}
+export default function App() {
+  const TabNav = createBottomTabNavigator();
+
+  const tabConfig=[
+    {
+      name:'Home',
+      component:HomeScreen,
+      focusedIcon:'home',
+      unfocusedIcon:'home-outline',
+      iconComponent:Ionicons
+    },
+    {
+      name:'Profile',
+      component:ProfileScreen,
+      focusedIcon:'user',
+      unfocusedIcon:'user-o',
+      iconComponent:FontAwesome
+    },
+    {
+      name:'Details',
+      component:DetailsScreen,
+      focusedIcon:'file-text',
+      unfocusedIcon:'file-text-0',
+      iconComponent:FontAwesome
+    },
+    {
+      name:'Settings',
+      component:SettingScreen,
+      focusedIcon:'settings',
+      unfocusedIcon:'settings-outline',
+      iconComponent:Ionicons
+    },
+  ]
+  
+  return (
+    <>
+    <HomeScreen/>
+    </>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+
+
+
+
+{/* <NavigationContainer>
+      <TabNav.Navigator
+      screenOptions={{
+        tabBarActiveTintColor:'blue',
+        tabBarInactiveTintColor:'black',
+        tabBarLabelStyle:{
+          fontSize:14,
+          paddingBottom:5,
+          fontWeight:600
+        },
+        tabBarStyle:{
+          height:60,
+          paddingTop:0
+        }
+      }}
+
+      
+      >
+<TabNav.Screen name="Home" component={HomeScreen}
+
+//for designing only single tab 
+// options={{
+//   tabBarIcon:({focused})=>(
+// <Icon
+// name='home'
+// size={28}
+// color={focused ? 'blue' :'black'}
+// />
+//   )
+// }}
+
+/> 
+// <TabNav.Screen name="Setting" component={SettingScreen}/> 
+
+//       </TabNav.Navigator>
+
+//       {/* we can use stack navigator like this
+//       <Stack.Navigator>
+
+//       </Stack.Navigator> */}
+//       </NavigationContainer>
+//       {/* // <NavigationContainer>
+//       // <DrawerNav/>
+//       // </NavigationContainer> */}
+
+//  */}
+
+
+
+
+
+
+// Second Code is code is correct 
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import HomeScreen from "./screens/HomeScreen";
+import {
+  DrawerActions,
+  NavigationContainer,
+  useNavigation,
+} from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ProfileScreen from "./screens/ProfileScreen";
+import UserScreen from "./screens/UserScreen";
+import Icon from "@expo/vector-icons/Entypo";
+// import 'react-native-gesture-handler'
+// import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import DrawerContent from "./DrawerContetn";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import SettingScreens from "./screens/SettingScreens";
+import Iconicons from "react-native-vector-icons/Ionicons";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import ProfileScreens from "./screens/ProfileScreen";
+import DetailsScreens from "./screens/DetailsScreen";
+
+const StackNav = () => {
+  const navigation = useNavigation();
+  const Stack = createNativeStackNavigator();
+  return (
+    <Stack.Navigator
+      // initialRouteName='Profile'
+      screenOptions={{
+        statusBarColor: "orange",
+        // title:'Home Screen',
+        headerStyle: {
+          backgroundColor: "orange",
+        },
+        headerTintColor: "white",
+        headerTitleAlign: "center",
+        // headerLeft:()=>{
+        //   return(
+        //     <Icon
+        //     onPress={()=>navigation.dispatch(DrawerActions.openDrawer())}
+        //     name='menu'
+        //     size={30}
+        //     color='#fff'
+
+        //     />
+        //   )
+        // }
+      }}
+    >
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          headerLeft: () => {
+            return (
+              <Icon
+                onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+                name="menu"
+                size={30}
+                color="#fff"
+              />
+            );
+          },
+        }}
+      />
+      <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="User" component={UserScreen} />
+    </Stack.Navigator>
+  );
+};
+
+const DrawerNav = () => {
+  const Drawer = createDrawerNavigator();
+  return (
+    <Drawer.Navigator
+      drawerContent={(props) => <DrawerContent {...props} />}
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Drawer.Screen name="Home" component={StackNav} />
+      {/* <Drawer.Screen name="Profile" component={ProfileScreen} />
+    <Drawer.Screen name="User" component={UserScreen} /> */}
+    </Drawer.Navigator>
+  );
+};
+export default function App() {
+  const TabNav = createBottomTabNavigator();
+
+  const tabConfig=[
+    {
+      name:'Home',
+      component:HomeScreen,
+      focusedIcon:'home',
+      unfocusedIcon:'home-outline',
+      iconComponent:Iconicons
+    },
+    {
+      name:'Profile',
+      component:ProfileScreens,
+      focusedIcon:'user',
+      unfocusedIcon:'user-o',
+      iconComponent:FontAwesome
+    },
+    {
+      name:'Details',
+      component:DetailsScreens,
+      focusedIcon:'file-text',
+      unfocusedIcon:'file-text-0',
+      iconComponent:FontAwesome
+    },
+    {
+      name:'Settings',
+      component:SettingScreens,
+      focusedIcon:'settings',
+      unfocusedIcon:'settings-outline',
+      iconComponent:Iconicons
+    },
+  ]
+
+  const screenOptions = ({route})=>({
+    tabBarIcon:({focused,color,size})=>{
+      const routeConfig = tabConfig.find(config=>config.name === route.name);
+      const iconName = focused ? routeConfig.focusedIcon : routeConfig.unfocusedIcon;
+      const iconComponent = routeConfig.iconComponent;
+
+      return <iconComponent name={iconName}  size={size} color={color} />
+
+   
+    },
+    tabBarActiveTintColor: "blue",
+    tabBarInactiveTintColor: "black",
+    tabBarLabelStyle: {
+      fontSize: 14,
+      paddingBottom: 5,
+      fontWeight: 600,
+    },
+    tabBarStyle: {
+      height: 60,
+      paddingTop: 0,
+    },
+    headerShown: false,
+  })
+
+  return (
+    <NavigationContainer>
+      {/* <DrawerNav/> */}
+      <TabNav.Navigator
+
+      screenOptions={screenOptions}
+        // screenOptions={{
+
+        //   //to design for all screens
+        //   // tabBarActiveTintColor: "blue",
+        //   // tabBarInactiveTintColor: "black",
+        //   // tabBarLabelStyle: {
+        //   //   fontSize: 14,
+        //   //   paddingBottom: 5,
+        //   //   fontWeight: 600,
+        //   // },
+        //   // tabBarStyle: {
+        //   //   height: 60,
+        //   //   paddingTop: 0,
+        //   // },
+        //   // headerShown: false,
+        // }}
+      >
+        <TabNav.Screen
+          name="Home"
+          component={HomeScreen}
+
+          //to desing single tab 
+          // options={{
+          //   tabBarIcon: ({ focused }) => (
+          //     <Icon name="home" size={28} color={focused ? "blue" : "black"} />
+          //   ),
+          // }}
+        />
+        <TabNav.Screen name="Settings" component={SettingScreens} />
+      </TabNav.Navigator>
+    </NavigationContainer>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+
+
+
+
+// COMPLETE TAB NAVIGATOR OR STACK NAVIGATOR HOME TO SETTING BUTTON OR Screen
+// import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import HomeScreen from "./screens/HomeScreen";
+import {
+  DrawerActions,
+  NavigationContainer,
+  useNavigation,
+} from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ProfileScreen from "./screens/ProfileScreen";
+import UserScreen from "./screens/UserScreen";
+import Icon from "@expo/vector-icons/Entypo";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import DrawerContent from "./DrawerContetn";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import SettingScreens from "./screens/SettingScreens";
+import Iconicons from "react-native-vector-icons/Ionicons";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import ProfileScreens from "./screens/ProfileScreen";
+import DetailsScreens from "./screens/DetailsScreen";
+
+const StackNav = () => {
+  const navigation = useNavigation();
+  const Stack = createNativeStackNavigator();
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        statusBarColor: "orange",
+        headerStyle: {
+          backgroundColor: "orange",
+        },
+        headerTintColor: "white",
+        headerTitleAlign: "center",
+      }}
+    >
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          headerLeft: () => (
+            <Icon
+              onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+              name="menu"
+              size={30}
+              color="#fff"
+            />
+          ),
+        }}
+      />
+      <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="User" component={UserScreen} />
+    </Stack.Navigator>
+  );
+};
+
+const DrawerNav = () => {
+  const Drawer = createDrawerNavigator();
+  return (
+    <Drawer.Navigator
+      drawerContent={(props) => <DrawerContent {...props} />}
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Drawer.Screen name="Home" component={StackNav} />
+    </Drawer.Navigator>
+  );
+};
+
+export default function App() {
+  const TabNav = createBottomTabNavigator();
+
+  const tabConfig = [
+    {
+      name: 'Home',
+      component: HomeScreen,
+      focusedIcon: 'home',
+      unfocusedIcon: 'home-outline',
+      iconComponent: Iconicons,
+    },
+    {
+      name: 'Profile',
+      component: ProfileScreens,
+      focusedIcon: 'user',
+      unfocusedIcon: 'user-o',
+      iconComponent: FontAwesome,
+    },
+    {
+      name: 'Details',
+      component: DetailsScreens,
+      focusedIcon: 'file-text',
+      unfocusedIcon: 'file-text-o',
+      iconComponent: FontAwesome,
+    },
+    {
+      name: 'Settings',
+      component: SettingScreens,
+      focusedIcon: 'settings',
+      unfocusedIcon: 'settings-outline',
+      iconComponent: Iconicons,
+    },
+  ];
+
+  const screenOptions = ({ route }) => {
+    const routeConfig = tabConfig.find(config => config.name === route.name);
+    return {
+      tabBarIcon: ({ focused, color, size }) => {
+        const iconName = focused ? routeConfig.focusedIcon : routeConfig.unfocusedIcon;
+        const IconComponent = routeConfig.iconComponent;
+        return React.createElement(IconComponent, {
+          name: iconName,
+          size: size,
+          color: color,
+        });
+      },
+      tabBarActiveTintColor: "blue",
+      tabBarInactiveTintColor: "black",
+      tabBarLabelStyle: {
+        fontSize: 14,
+        paddingBottom: 5,
+        fontWeight: "600",
+      },
+      tabBarStyle: {
+        height: 60,
+        paddingTop: 0,
+      },
+      headerShown: false,
+    };
+  };
+
+  return (
+    <NavigationContainer>
+      <TabNav.Navigator screenOptions={screenOptions}>
+
+        {/* {
+          tabConfig.map(({routeConfig})=>(
+            <TabNav.Screen key={routeConfig.name} component={routeConfig.component}/>
+          ))
+        } */}
+        {tabConfig.map(({ name, component }) => (
+          <TabNav.Screen key={name} name={name} component={component} />
+        ))}
+      </TabNav.Navigator>
+    </NavigationContainer>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+
+
+
+
+
+
+//  ****************** Stack Drawer or TAb naviation ek sath
+// import { StatusBar } from "expo-status-bar";
+import React, { useEffect } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import HomeScreen from "./screens/HomeScreen";
+import {
+  DrawerActions,
+  NavigationContainer,
+  useNavigation,
+} from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ProfileScreen from "./screens/ProfileScreen";
+import UserScreen from "./screens/UserScreen";
+import Icon from "@expo/vector-icons/Entypo";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import DrawerContent from "./DrawerContetn";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import SettingScreens from "./screens/SettingScreens";
+import Iconicons from "react-native-vector-icons/Ionicons";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import ProfileScreens from "./screens/ProfileScreen";
+import DetailsScreens from "./screens/DetailsScreen";
+import UpdateProfileScreens from "./screens/UpdateProfileScreen";
+import LoginUserScreens from "./screens/LoginUserScreen";
+import RegisterPage from "./screens/RegisterPage";
+import AdminStack from "./screens/AdminStackScreens";
+import AdminStackScreens from "./screens/AdminStackScreens";
+import UserScreens from "./screens/UserScreen";
+import User from "react-native-vector-icons/AntDesign";
+
+const StackNav = () => {
+  const navigation = useNavigation();
+  const Stack = createNativeStackNavigator();
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        statusBarColor: "orange",
+        headerStyle: {
+          backgroundColor: "orange",
+        },
+        headerTintColor: "white",
+        headerTitleAlign: "center",
+      }}
+    >
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{ headerShown: true }}
+
+        // options={{
+        //   headerLeft: () => (
+        //     <Icon
+        //       onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+        //       name="menu"
+        //       size={30}
+        //       color="#fff"
+        //     />
+        //   ),
+        // }}
+      />
+      <Stack.Screen
+        name="User"
+        component={UserScreen}
+        options={{ headerShown: true }}
+      />
+
+      <Stack.Screen
+        name="Update"
+        component={UpdateProfileScreens}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="LoginUser"
+        component={LoginNav}
+
+        // component={LoginUserScreens}
+        // options={{headerShown:false}}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const DrawerNav = () => {
+  const Drawer = createDrawerNavigator();
+  return (
+    <Drawer.Navigator
+      drawerContent={(props) => <DrawerContent {...props} />}
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      {/* <Drawer.Screen name="Home" component={StackNav} /> */}
+      <Drawer.Screen name="Home" component={TabNav} />
+
+    </Drawer.Navigator>
+  );
+};
+
+const LoginNav = () => {
+  const Stack = createNativeStackNavigator();
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="Login" component={LoginUserScreens} />
+      <Stack.Screen name="Register" component={RegisterPage} />
+      <Stack.Screen name="Home" component={DrawerNav} />
+      <Stack.Screen name="AdminScreen" component={AdminStack} />
+    </Stack.Navigator>
+  );
+};
+
+const AdminStack = () => {
+  const Stack = createNativeStackNavigator();
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        options={{
+          statusBarColor: "blue",
+          headerShown: true,
+          headerBackVisible: false,
+          headerStyle: {
+            backgroundColor: "blue",
+          },
+          headerTintColor: "#fff",
+          headerTitleAlign: "center",
+        }}
+        name="AdminScreen"
+        component={AdminStackScreens}
+      />
+
+      <Stack.Screen
+        options={{
+          headerShown: false,
+        }}
+        name="Login"
+        component={LoginNav}
+      />
+    </Stack.Navigator>
+  );
+};
+
+export default function App() {
+  // const TabNav = createBottomTabNavigator();
+  async function getData() {
+    setIsLoggedIn(data);
+    setUserType(userType1);
+  }
+
+  useEffect(() => {
+    getData();
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 900);
+  }, [isLoggedIn]);
+
+  const tabConfig = [
+    {
+      name: "Home",
+      component: HomeScreen,
+      focusedIcon: "home",
+      unfocusedIcon: "home-outline",
+      iconComponent: Iconicons,
+    },
+    {
+      name: "Profile",
+      component: ProfileScreens,
+      focusedIcon: "user",
+      unfocusedIcon: "user-o",
+      iconComponent: FontAwesome,
+    },
+    {
+      name: "Details",
+      component: DetailsScreens,
+      focusedIcon: "file-text",
+      unfocusedIcon: "file-text-o",
+      iconComponent: FontAwesome,
+    },
+    {
+      name: "Settings",
+      component: SettingScreens,
+      focusedIcon: "settings",
+      unfocusedIcon: "settings-outline",
+      iconComponent: Iconicons,
+    },
+  ];
+
+  const screenOptions = ({ route }) => {
+    const routeConfig = tabConfig.find((config) => config.name === route.name);
+    return {
+      tabBarIcon: ({ focused, color, size }) => {
+        const iconName = focused
+          ? routeConfig.focusedIcon
+          : routeConfig.unfocusedIcon;
+        const IconComponent = routeConfig.iconComponent;
+        return React.createElement(IconComponent, {
+          name: iconName,
+          size: size,
+          color: color,
+        });
+      },
+      tabBarActiveTintColor: "blue",
+      tabBarInactiveTintColor: "black",
+      tabBarLabelStyle: {
+        fontSize: 14,
+        paddingBottom: 5,
+        fontWeight: "600",
+      },
+      tabBarStyle: {
+        height: 60,
+        paddingTop: 0,
+      },
+      headerShown: false,
+    };
+  };
+
+  const TabNav = () => {
+    const Tab = createBottomTabNavigator();
+    return (
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false,
+          tabBarActiveTintColor: "white",
+          tabBarInactiveTintColor: "white",
+          tabBarLabelStyle: { marginBottom: 5, fontSize: 13 },
+          tabBarStyle: { backgroundColor: "blue" },
+        }}
+      >
+        <Tab.Screen
+          name="Home"
+          component={StackNav}  //to jo stack navigator he usme ham StackNav ki jgah TabNav use kar rahe he 
+          options={{
+            tabBarIcon: ({ focused, color, size }) => (
+              <Icon
+                name={focused ? "home" : "home-outline"}
+                size={28}
+                color={"white"}
+              />
+            ),
+          }}
+        />
+
+        <Tab.Screen
+          name="User"
+          component={UserScreens}
+          options={{
+            tabBarIcon: ({ focused, color, size }) => (
+              <User
+                name={focused ? "account-multiple" : "account-multiple-outline"}
+                size={28}
+                color={"white"}
+              />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    );
+  };
+
+  return (
+    <NavigationContainer>
+      {isLoggedIn && userType == "Admin" ? (
+        <AdminStack />
+      ) : isLoggedIn ? (
+        <DrawerNav />
+      ) : (
+        <LoginNav />
+      )}
+      <Toast config={toastConfig} />
+    </NavigationContainer>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+
+//<TabNav.Navigator screenOptions={screenOptions}>
+//{/* {
+// tabConfig.map(({routeConfig})=>(
+//  <TabNav.Screen key={routeConfig.name} component={routeConfig.component}/>
+//))
+//} */}
+//{tabConfig.map(({ name, component }) => (
+//<TabNav.Screen key={name} name={name} component={component} />
+//))}
+//</TabNav.Navigator>
